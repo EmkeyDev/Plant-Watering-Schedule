@@ -51,13 +51,11 @@ public class Main {
     }
 
     static void addPlant() {
-        System.out.print("Enter name plant: ");
-        String name = scanner.nextLine();
-        System.out.print("Which type is plant \n Outdoor - 1\n Indoor - 2");
+        String name = getValidName("Enter name plant: ");
+        System.out.println("Which type is plant \n Outdoor - 1\n Indoor - 2");
         System.out.print("Enter number: ");
         int type = Integer.parseInt(scanner.nextLine());
-        System.out.print("How much watering interval for your plant: ");
-        int interval = Integer.parseInt(scanner.nextLine());
+        int interval = getValidNumber("How much watering interval for your plant: ");
         if (type == 1) {
             System.out.print("Season (spring/summer/all-year): ");
             String season = scanner.nextLine();
@@ -70,18 +68,43 @@ public class Main {
     }
 
     static void deletePlant() {
-        System.out.print("Enter name plant: ");
-        String name = scanner.nextLine();
+        String name = getValidName("Enter name plant: ");
         manager.deletePlant(name);
         System.out.println("The " + name + " deleted");
     }
 
     static void updatePlant() {
-        System.out.print("Enter name plant: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter new watering interval: ");
-        int interval = Integer.parseInt(scanner.nextLine());
+        String name = getValidName("Enter name plant: ");
+        int interval = getValidNumber("How much watering interval for your plant: ");
         manager.updatePlant(name, interval);
         System.out.println("The " + name + " successful update");
+    }
+
+    static int getValidNumber(String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            try {
+                int number = Integer.parseInt(scanner.nextLine());
+                if (number <= 0) {
+                    System.out.println("Number must be greater than 0!");
+                } else {
+                    return number;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Enter a number.");
+            }
+        }
+    }
+
+    static String getValidName(String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            String name = scanner.nextLine().trim();
+            if (name.isEmpty()) {
+                System.out.println("Name cannot be empty!");
+            } else {
+                return name;
+            }
+        }
     }
 }
