@@ -52,4 +52,8 @@ public class Plant {
     public boolean needsWatering() {
         return !LocalDate.now().isBefore(getNextWateringDate());
     }
+
+    public String getInfo() {
+        return "Растение: " + name + " | полив каждые " + waterInterval + " дней";
+    }
 }

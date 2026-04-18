@@ -17,4 +17,9 @@ public class OutdoorPlant extends Plant {
     public void setSeason(String season) {
         this.season = season;
     }
+
+    @Override
+    public String getInfo() {
+        return "Outdoor: " + getName() + " | season: " + season;
+    }
 }

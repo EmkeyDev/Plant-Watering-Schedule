@@ -17,4 +17,9 @@ public class IndoorPlant extends Plant { // extends — значит насле�
     public void setLightRequirement(String lightRequirement) {
         this.lightRequirement = lightRequirement;
     }
+
+    @Override
+    public String getInfo() {
+        return "Indoor: " + getName() + " | light: " + lightRequirement;
+    }
 }
