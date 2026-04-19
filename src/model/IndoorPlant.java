@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class IndoorPlant extends Plant { // extends — значит наследует.
+public class IndoorPlant extends Plant {
     private String lightRequirement;
 
     public IndoorPlant(String name, int waterInterval, LocalDate lastWatered, String lightRequirement) {
