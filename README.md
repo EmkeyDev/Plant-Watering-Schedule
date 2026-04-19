@@ -32,19 +32,19 @@ Name: Emir
 
 ## Screenshots
 ### Login and Main Menu
-![img_2.png](img_2.png)
+![Login](screenshots/img_2.png)
 
 ### Add Plant
-![img_4.png](img_4.png)
+![Add Plant](screenshots/img_4.png)
 
 ### List Plants
-![img_5.png](img_5.png)
+![List Plants](screenshots/img_5.png)
 
 ### Update Plant
-![img_7.png](img_7.png)
+![Update Plant](screenshots/img_7.png)
 
 ### Delete Plant
-![img_9.png](img_9.png)
+![Delete Plant](screenshots/img_9.png)
 
 ### Validation
-![img_10.png](img_10.png)
+![Validation](screenshots/img_10.png)
