@@ -80,7 +80,7 @@ public class PlantManager {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error download: " + e.getMessage());
+            System.out.println("Error loading file: " + e.getMessage());
         }
     }
 }

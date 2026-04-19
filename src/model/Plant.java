@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Plant {
+public abstract class Plant {
     private String name;
     private int waterInterval;
     private LocalDate lastWatered;
@@ -11,11 +11,6 @@ public class Plant {
         this.name = name;
         this.waterInterval = waterInterval;
         this.lastWatered = lastWatered;
-    }
-
-    public Plant(String name, int waterInterval) {
-        this.name = name;
-        this.waterInterval = waterInterval;
     }
 
     public String getName() {
@@ -53,7 +48,5 @@ public class Plant {
         return !LocalDate.now().isBefore(getNextWateringDate());
     }
 
-    public String getInfo() {
-        return "Растение: " + name + " | полив каждые " + waterInterval + " дней";
-    }
+    public abstract String getInfo();
 }

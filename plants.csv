@@ -1,2 +1,3 @@
 type,name,interval,lastWatered,extra
-OUTDOOR,rose,4,2026-04-19,spring
+INDOOR,Cactus,1,2026-04-19,high
+OUTDOOR,Rose ,7,2026-04-19,spring

@@ -3,7 +3,6 @@ import manager.PlantManager;
 import model.IndoorPlant;
 import model.OutdoorPlant;
 import model.Plant;
-
 import model.User;
 
 import java.time.LocalDate;
@@ -28,6 +27,8 @@ public class Main {
             System.out.println("2. List plants");
             System.out.println("3. Delete plant");
             System.out.println("4. Update watering interval");
+            System.out.println("5. Plants to water today");
+            System.out.println("6. Mark as watered");
             System.out.println("0. Exit");
             System.out.print("Enter number: ");
 
@@ -38,6 +39,8 @@ public class Main {
                 case "2" -> listPlants();
                 case "3" -> deletePlant();
                 case "4" -> updatePlant();
+                case "5" -> showTodayWatering();
+                case "6" -> markWatered();
                 case "0" -> {
                     manager.saveToFile();
                     return;
@@ -54,7 +57,9 @@ public class Main {
             return;
         }
         for (Plant plant : list) {
-            System.out.println(plant.getInfo());
+            String status = plant.needsWatering() ? "[ WATER NOW ]" : "[ OK ]";
+            String nextDate = "next: " + plant.getNextWateringDate();
+            System.out.println(status + " " + plant.getInfo() + " | " + nextDate);
         }
     }
 
@@ -86,6 +91,34 @@ public class Main {
         int interval = getValidNumber("How much watering interval for your plant: ");
         manager.updatePlant(name, interval);
         System.out.println("The " + name + " successful update");
+    }
+
+    static void showTodayWatering() {
+        List<Plant> list = manager.getAllPlants();
+        boolean found = false;
+        for (Plant plant : list) {
+            if (plant.needsWatering()) {
+                System.out.println("Water today: " + plant.getName()
+                        + " | next: " + plant.getNextWateringDate());
+                found = true;
+            }
+        }
+        if (!found) System.out.println("No plants need watering today!");
+    }
+
+    static void markWatered() {
+        while (true) {
+            String name = getValidName("Enter plant name: ");
+            Plant plant = manager.findPlant(name);
+            if (plant != null) {
+                plant.setLastWatered(LocalDate.now());
+                manager.saveToFile();
+                System.out.println(name + " marked as watered!");
+                return;
+            } else {
+                System.out.println("Plant not found! Try again.");
+            }
+        }
     }
 
     static int getValidNumber(String prompt) {
