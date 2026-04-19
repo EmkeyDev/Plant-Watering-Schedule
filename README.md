@@ -48,3 +48,6 @@ Name: Emir
 
 ### Validation
 ![Validation](screenshots/img_10.png)
+
+### JavaFX GUI
+![img.png](screenshots/img.png)
