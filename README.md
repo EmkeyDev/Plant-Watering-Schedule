@@ -14,6 +14,9 @@ Name: Emir
 4. Login with:
     - Admin: username `Emir`, password `emir123`
     - User: username `user`, password `user123`
+   
+## Presentation
+[View Presentation](https://docs.google.com/presentation/d/1I8HFv6T144vv2qalYXjQQjWPSOIptUnEq8QXOX2P3us/edit?usp=sharing)
 
 ## Project Requirements
 1. CRUD operations for plants

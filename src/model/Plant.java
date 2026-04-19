@@ -37,10 +37,8 @@ public abstract class Plant {
         this.waterInterval = waterInterval;
     }
 
-    // Метод который вычисляет дату следующего полива.
     public LocalDate getNextWateringDate() {
         return lastWatered.plusDays(waterInterval);
-        // plusDays() — это метод LocalDate который просто прибавляет дни к дате.
     }
 
     // Второй метод который говорит нужно ли поливать сегодня.
