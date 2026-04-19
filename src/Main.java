@@ -15,7 +15,7 @@ public class Main {
         manager.loadFromFile();
 
         while (true) {
-            System.out.println("\n=== Plant Watering Schedule ===");
+            System.out.println("\n--- Plant Watering Schedule ---");
             System.out.println("1. Add plant");
             System.out.println("2. List plants");
             System.out.println("3. Delete plant");
