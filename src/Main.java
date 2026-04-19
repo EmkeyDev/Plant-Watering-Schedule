@@ -1,7 +1,10 @@
+import manager.AuthManager;
 import manager.PlantManager;
 import model.IndoorPlant;
 import model.OutdoorPlant;
 import model.Plant;
+
+import model.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,10 +13,15 @@ import java.util.Scanner;
 public class Main {
     static PlantManager manager = new PlantManager();
     static Scanner scanner = new Scanner(System.in);
+    static AuthManager authManager = new AuthManager();
 
     public static void main(String[] args) {
         manager.loadFromFile();
 
+        if (!login()) {
+            System.out.println("Too many failed attempts. Goodbye!");
+            return;
+        }
         while (true) {
             System.out.println("\n--- Plant Watering Schedule ---");
             System.out.println("1. Add plant");
@@ -102,9 +110,42 @@ public class Main {
             String name = scanner.nextLine().trim();
             if (name.isEmpty()) {
                 System.out.println("Name cannot be empty!");
+            } else if (!name.matches("[a-zA-Z]+")) {
+                System.out.println("Name must contain only letters!");
             } else {
-                return name;
+                return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
             }
         }
+    }
+
+    static String getValidPassword(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String password = scanner.nextLine();
+            if (password.isEmpty()) {
+                System.out.println("Password cannot be empty!");
+            } else if (password.length() < 4) {
+                System.out.println("Password must be at least 4 characters!");
+            } else {
+                return password;
+            }
+        }
+    }
+
+    static boolean login() {
+        int attempts = 3;
+        while (attempts > 0) {
+            String username = getValidName("Username: ");
+            String password = getValidPassword("Password: ");
+
+            User user = authManager.login(username, password);
+            if (user != null) {
+                System.out.println("Welcome, " + user.getUsername() + "! Role: " + user.getRole());
+                return true;
+            }
+            attempts--;
+            System.out.println("Wrong username or password! Attempts left: " + attempts);
+        }
+        return false;
     }
 }
